@@ -139,6 +139,52 @@
 
 <script>
 export default {
+  components: {
+    // here will be components for every section imported and data from asyncData will be passed as props
+  },
+  head: {
+    title: 'Home'
+  },
+  async asyncData({ $axios }) {
+    // Title and 1 paragraph description
+    const firstSection = await $axios.get('https://edgeryders.eu/t/edgeryders-culture-squad/9591')
+    const firstSectionTitle = firstSection.data.title
+    const firstSectionParagraphDescription = firstSection.data.post_stream.posts[0].cooked
+
+    // Team 1 paragraph description + photos
+    const teamSection = await $axios.get('https://edgeryders.eu/t/about-us/9592/2')
+    const teamSectionTitle = teamSection.data.title
+    const teamSectionParagraphDescription = teamSection.data.post_stream.posts[0].cooked
+
+    // Meetup dates
+    const meetupDatesSection = await $axios.get('https://edgeryders.eu/tags/webcontent-culturesquad-event')
+    const events = meetupDatesSection.data.topic_list.topics
+
+    // Featured work
+    const featuredWorkSection = await $axios.get('https://edgeryders.eu/tags/webcontent-culturesquad-featured')
+    const featuredWork = featuredWorkSection.data.topic_list.topics
+
+    // Featured content
+    const featuredContentSection = await $axios.get('https://edgeryders.eu/tags/webcontent-culturesquad-post')
+    const featuredContent = featuredContentSection.data.topic_list.topics
+
+    // Join us
+    const joinUsSection = await $axios.get('https://edgeryders.eu/t/join-us/9597')
+    const joinUsSectionTitle = joinUsSection.title
+    const joinUsSectionParagraphDescription = joinUsSection.data.post_stream.posts[0].cooked
+
+    return {
+      firstSectionTitle,
+      firstSectionParagraphDescription,
+      teamSectionTitle,
+      teamSectionParagraphDescription,
+      events,
+      featuredWork,
+      featuredContent,
+      joinUsSectionTitle,
+      joinUsSectionParagraphDescription
+    }
+  },
   mounted() {
     this.$startBannerAnimation()
     this.$startHeaderAnimation()

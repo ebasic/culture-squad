@@ -18,7 +18,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  a, a:hover {
-    text-decoration: none;
+  h1 a:hover {
+    color: inherit;
+    text-underline: none;
   }
 </style>

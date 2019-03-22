@@ -334,16 +334,16 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 </template>
 
 <script>
+// import axios from 'axios'
+
 export default {
   data() {
     return {
       title: 'Team'
     }
   },
-  head() {
-    return {
-      title: this.title
-    }
+  head: {
+    title: this.title
   }
 }
 </script>

@@ -26,16 +26,16 @@
 </template>
 
 <script>
+// import axios from 'axios'
+
 export default {
   data() {
     return {
       title: 'Burning now'
     }
   },
-  head() {
-    return {
-      title: this.title
-    }
+  head: {
+    title: this.title
   }
 }
 </script>

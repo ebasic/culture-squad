@@ -19,7 +19,6 @@ export default {
     WebsiteFooter
   },
   head: {
-    title: 'Home',
     bodyAttrs: {
       class: 'is-preload'
     }
