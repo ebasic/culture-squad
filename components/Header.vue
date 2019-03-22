@@ -13,15 +13,6 @@ export default {
     return {
       headerText: config.siteName
     }
-  },
-  methods: {
-    expandMenu() {
-      const expanded = document.getElementById('menu').classList.contains('visible')
-
-      if (!expanded) {
-        document.getElementById('menu').classList.add('visible')
-      }
-    }
   }
 }
 </script>

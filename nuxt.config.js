@@ -33,7 +33,8 @@ export default {
   */
   plugins: [
     { src: '~/plugins/menu.js', ssr: false },
-    { src: '~/plugins/animation.js', ssr: false }
+    { src: '~/plugins/animation.js', ssr: false },
+    { src: '~/plugins/utils.js', ssr: false }
   ],
 
   /*
