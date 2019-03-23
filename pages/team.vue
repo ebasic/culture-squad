@@ -337,13 +337,31 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 // import axios from 'axios'
 
 export default {
-  data() {
-    return {
-      title: 'Team'
-    }
-  },
   head: {
-    title: this.title
+    title: 'Team'
+  },
+  async asyncData({ $axios }) {
+    // Text about team
+    const aboutTeamSection = await $axios.get('https://edgeryders.eu/t/team-site-description/9603')
+    const aboutTeamSectionTitle = aboutTeamSection.data.title
+    const aboutTeamSectionDescription = aboutTeamSection.data.post_stream.posts[0].cooked
+
+    // Teams bios and pictures from edgeryders.eu
+    const teamBiosPicturesSection = await $axios.get('https://edgeryders.eu/tags/webcontent-culturesquad-member')
+    const members = teamBiosPicturesSection.data.topic_list.topics
+
+    // Logos of Edgeryders and partners
+    const logosPartnersSection = await $axios.get('https://edgeryders.eu/t/team-site-partners/9604')
+    const logosPartnersSectionTitle = logosPartnersSection.data.title
+    const logosPartnersSectionContent = aboutTeamSection.data.post_stream.posts[0].cooked
+
+    return {
+      aboutTeamSectionTitle,
+      aboutTeamSectionDescription,
+      members,
+      logosPartnersSectionTitle,
+      logosPartnersSectionContent
+    }
   }
 }
 </script>
