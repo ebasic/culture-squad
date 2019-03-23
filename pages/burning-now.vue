@@ -29,13 +29,23 @@
 // import axios from 'axios'
 
 export default {
-  data() {
-    return {
-      title: 'Burning now'
-    }
-  },
   head: {
-    title: this.title
+    title: 'Burning now'
+  },
+  async asyncData({ $axios }) {
+    // Burning now page @ Text + photos
+    const burningNow = await $axios.get('https://edgeryders.eu/tags/webcontent-culturessquad-burning')
+    const title = burningNow.data.topic_list.topics[0].title
+    const image = burningNow.data.topic_list.topics[0].image
+    const content = burningNow.data.topic_list.topics[0].excerpt
+    const thumbnails = burningNow.data.topic_list.topics[0].thumbnails
+
+    return {
+      title,
+      image,
+      content,
+      thumbnails
+    }
   }
 }
 </script>
