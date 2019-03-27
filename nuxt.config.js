@@ -1,60 +1,79 @@
-import pkg from './package'
-import cfg from './config'
+const environment = require('./environment');
 
-export default {
+module.exports = {
   mode: 'universal',
+  env: environment,
+  /*
+  ** Modules
+  */
+  modules: [
+    '@nuxtjs/style-resources',
+    ['bootstrap-vue/nuxt', { css: false }],
+    '@nuxtjs/markdownit',
+    '@nuxtjs/axios'
+  ],
+  /*
+  ** Plugins
+  */
+  plugins: [
+    { src: '@/plugins/nuxt-client-init.js', ssr: false },
+    { src: '~/plugins/axios.js', ssr: true },
+    { src: '~/plugins/maps.js', ssr: false }
+  ],
+  /*
+  ** Axios configuration
+  */
+  axios: {
+    proxyHeaders: false,
+    credentials: false
+  },
   /*
   ** Headers of the page
   */
   head: {
-    titleTemplate: `%s - ${cfg.siteName}`,
+    titleTemplate: `%s - ${process.env.websiteName}`,
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: 'WIP' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/icons/favicon.ico?v=20190110' },
+      { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.8.1/css/all.css', integrity: 'sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf', crossorigin: 'anonymous' },
     ]
   },
   /*
-  ** Customize the progress-bar color
+  ** Customize the progress bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#3B8070' },
   /*
-  ** Global CSS
+  ** Load globally required SASS resources.
+  */
+  styleResources: {
+    scss: [
+      './styles/_variables.scss', // use underscore "_" & also file extension ".scss"
+      './styles/_helpers.scss' // use underscore "_" & also file extension ".scss"
+    ]
+  },
+  /*
+  ** Load the main SCSS style.
   */
   css: [
-    '@/assets/scss/main.scss'
-  ],
-
-  /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-    { src: '~/plugins/axios.js', ssr: true },
-    { src: '~/plugins/menu.js', ssr: false },
-    { src: '~/plugins/animation.js', ssr: false },
-    { src: '~/plugins/utils.js', ssr: false }
-  ],
-
-  /*
-  ** Nuxt.js modules
-  */
-  modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    // Doc: https://bootstrap-vue.js.org/docs/
-    'bootstrap-vue/nuxt',
-    'nuxt-sass-resources-loader'
+    '@/styles/main.scss'
   ],
   /*
-  ** Axios module configuration
+  ** markdownit options
+  * ** See https://github.com/markdown-it/markdown-it
   */
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-  },
-
+  // markdownit: {
+  //   preset: 'default',
+  //   linkify: true,
+  //   breaks: true,
+  //   use: [
+  //     ['markdown-it-container', containerName],
+  //     'markdown-it-attrs'
+  //   ]
+  // },
   /*
   ** Build configuration
   */
@@ -74,4 +93,4 @@ export default {
       }
     }
   }
-}
+};

@@ -1,6 +1,4 @@
-# cultures-squad
-
-> Website for Cultures Squad
+# Website for Cultures Squad
 
 ## Build Setup
 
