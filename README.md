@@ -4,17 +4,28 @@
 
 ``` bash
 # install dependencies
-$ npm install
+$ yarn install
 
 # serve with hot reload at localhost:3000
-$ npm run dev
+$ yarn dev
 
 # build for production and launch server
-$ npm run build
-$ npm start
+$ yarn build
+$ yarn start
 
 # generate static project
-$ npm run generate
+$ yarn generate:staging
+$ yarn generate:production
 ```
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+
+#
+
+```
+Bootstrap 4 used (has very well documented components for Vue, 
+lot of themes, easy customizable and facilitates development)
+
+There is 'secret' page on site (navigate to `/theme-kit`) 
+with theme elements preview 
+```

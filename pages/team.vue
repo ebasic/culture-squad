@@ -1,7 +1,7 @@
 <template>
   <div>
     <hero>
-      <h2>Generic</h2>
+      <h2>{{ pageHeaderTitle }}</h2>
       <p>Lorem justo in tellus aenean lacinia felis.</p>
     </hero>
 
@@ -49,6 +49,11 @@
     head: {
       title: 'Team',
       titleTemplate: '%s | WIP'
+    },
+    data() {
+      return {
+        pageHeaderTitle: 'Team'
+      }
     },
     async asyncData({ $axios }) {
       // Text about team

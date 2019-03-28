@@ -1,7 +1,7 @@
 <template>
   <div>
     <hero>
-      <h2>Generic</h2>
+      <h2>{{ pageHeaderTitle }}</h2>
       <p>Lorem justo in tellus aenean lacinia felis.</p>
     </hero>
 
@@ -29,11 +29,16 @@ export default {
       title: 'Burning now',
       titleTemplate: '%s | WIP'
   },
+  data() {
+    return {
+      pageHeaderTitle: 'Burning now'
+    }
+  },
   async asyncData({ $axios }) {
     // Burning now page @ Text + photos
     const burningNow = await $axios.get('https://edgeryders.eu/tags/webcontent-culturessquad-burning');
     const lastTopic = getLatestByDate(burningNow.data.topic_list.topics, 'created_at');
-    const burningNowContent = await $axios.get(`https://edgeryders.eu/t/${lastTopic.title}/${lastTopic.id}`);
+    const burningNowContent = await $axios.get(`https://edgeryders.eu/t/${lastTopic.slug}/${lastTopic.id}`);
     const burningNowPost = getLatestByDate(burningNowContent.data.post_stream.posts, 'updated_at');
     const burningNowHtml = burningNowPost.cooked;
 

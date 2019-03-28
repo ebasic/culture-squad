@@ -3,23 +3,20 @@
     <div class="row">
       <div class="col">
         <h5 class="mb-5">{{ sectionTitle }}</h5>
-        <div class="cards-container d-flex">
-          <b-card
-            v-for="member of members"
-            :key="member.id"
-            :title="member.title"
-            :img-src="member.image_url"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 15rem; margin: 0 1rem 1rem 0"
-            class="mb-2"
-          >
-            <b-card-text
-              :id="member.id"
-              class="b-card-text"
-              v-html="truncate(removeBeginningSquareBracketsTag(member.excerpt), 50, '...')" />
-          </b-card>
+        <div
+          v-for="member of members"
+          :key="member.id"
+          class="d-flex mb-3 border-bottom pb-3">
+          <div class="col-4">
+            <img
+              :src="member.image_url"
+              class="img-fluid rounded"
+              alt="image">
+          </div>
+          <div class="col-8 align-self-center">
+            <h5 class="mb-4">{{ member.title }}</h5>
+            <p v-html="removeBeginningSquareBracketsTag(member.excerpt)"/>
+          </div>
         </div>
       </div>
     </div>

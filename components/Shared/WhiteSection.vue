@@ -1,5 +1,6 @@
 <template>
-  <div class="container-fluid mt-3 white-section">
+  <div class="container-fluid white-section">
+
     <slot />
   </div>
 </template>

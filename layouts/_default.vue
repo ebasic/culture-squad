@@ -7,8 +7,8 @@
 </template>
 
 <script>
-  import Navigation from '@/components/Layout/Navigation'
-  import WebsiteFooter from '@/components/Layout/Footer'
+  import Navigation from '../components/Layout/Navigation'
+  import WebsiteFooter from '../components/Layout/Footer'
 
   export default {
     components: {
