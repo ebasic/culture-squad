@@ -45,16 +45,17 @@ export const truncate = (text, length, suffix) => {
 
 // The rest are content parts (...rest), thus they're joined into one string bellow
 
-export const parseEvents = (events) => {
+export const parseEvents = (events, parseContentKey) => {
   let final = [];
 
   events.forEach(function (e) {
-    const parts = e.excerpt.split("\n");
+    const parts = e[parseContentKey].split("\n");
     const [time, location_part_redundant, location_part_main, ...rest] = parts;
 
     final.push({
       id: e.id,
       title: e.title,
+      slug: e.slug,
       time: parseTimePart(time),
       location: boldDesiredWordInHtml(location_part_main, 'Location:'),
       content: rest.join(''),
@@ -62,7 +63,7 @@ export const parseEvents = (events) => {
     });
   });
 
-  return final;
+  return final.length === 1 ? final[0] : final;
 };
 
 
@@ -97,19 +98,7 @@ export const getLatestByDate = (array, dateKey) => {
 };
 
 
-// Attach corresponding latest post to featured work
-export const attachLatestFeatureWorkPost = (works, posts) => {
-  works.forEach(function (w) {
-    let post = posts.find(el => el.topic_id === w.id);
-    w.latestPost = posts.find(el => el.topic_id === w.id);
-  });
-
-  return works;
-};
-
-
 // Apply moment format
 export const formatDate = (date, formatString) => {
   return moment(date).format(formatString);
 };
-

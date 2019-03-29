@@ -1,25 +1,22 @@
 <template>
   <div class="container p-4">
     <div class="row">
-      <div class="col">
+      <div class="col-12">
         <h5 class="mb-5">{{ sectionTitle }}</h5>
-        <div class="cards-container d-flex">
-          <b-card
-            v-for="member of members"
-            :key="member.id"
-            :title="member.title"
-            :img-src="member.image_url"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 15rem; margin: 0 1rem 1rem 0"
-            class="mb-2"
-          >
-            <b-card-text
-              :id="member.id"
-              class="b-card-text"
-              v-html="truncate(removeBeginningSquareBracketsTag(member.excerpt), 50, '...')" />
-          </b-card>
+      </div>
+      <div
+        v-for="member of members"
+        :key="member.id"
+        class="d-flex mb-3 border-bottom pb-3 flex-wrap">
+        <div class="col-md-4 col-12 mb-4 mb-md-0">
+          <img
+            :src="member.image_url"
+            class="img-fluid rounded"
+            alt="image">
+        </div>
+        <div class="col-md-8 col-12 align-self-center">
+          <h5 class="mb-4">{{ member.title }}</h5>
+          <p v-html="removeBeginningSquareBracketsTag(member.excerpt)"/>
         </div>
       </div>
     </div>

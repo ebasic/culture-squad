@@ -6,32 +6,30 @@
       class="hero">
       <div class="container">
         <div class="row mx-auto py-3 d-flex align-items-center hero__container">
-          <div class="col-8 text-left hero__text">
+          <div class="col-sm-12 col-lg-8 text-left hero__text">
             <div class="hero__text__inner">
-              <h1>
-                Sed feugiat amet adipiscing
-              </h1>
-              <p>
-                Amet tincidunt arcu suspendisse consequat
-              </p>
+              <h1> {{ pageHeaderTitle }} </h1>
+              <p> Amet tincidunt arcu suspendisse consequat </p>
             </div>
           </div>
-          <div class="col-4 hero__buttons pl-5">
+          <div class="col-sm-12 col-lg-4 hero__buttons pl-lg-5">
             <div class="hero__buttons__inner">
               <b-button
-                variant="primary"
                 class="w-100 mb-4"
-                type="link"
-                size="lg">
-                Get Started
+                variant="primary"
+                href="/burning-now"
+                size="lg"
+                type="link">
+                Burning now
               </b-button>
 
               <b-button
-                variant="outline-light"
                 class="w-100"
-                type="link"
-                size="lg">
-                More Info
+                variant="outline-light"
+                href="/team"
+                size="lg"
+                type="link">
+                Team
               </b-button>
             </div>
           </div>
@@ -44,17 +42,8 @@
       <home-first-section
         :title="firstSectionTitle"
         :description-html="firstSectionParagraphDescription"/>
-
-      <!--Europe map with custom nodes-->
-      <div class="container p-4">
-        <div class="row">
-          <div class="col">
-            <div id="home-europe-map"/>
-          </div>
-        </div>
-      </div>
+      <google-map />
     </white-section>
-
 
     <!--Team homepage section-->
     <grey-section>
@@ -71,8 +60,7 @@
     <!--Featured work homepage section-->
     <grey-section>
       <home-featured-work-section
-        :featured-work="featuredWork"
-        :featured-work-posts="featuredWorkPosts"/>
+        :featured-work="featuredWork" />
     </grey-section>
 
     <!--Featured content homepage section-->
@@ -91,6 +79,7 @@
 
 <script>
 import Hero from '../components/Layout/Hero'
+import GoogleMap from '../components/Shared/GoogleMap'
 import SocialIconsBar from '../components/Shared/SocialIconsBar'
 import WhiteSection from '../components/Shared/WhiteSection'
 import GreySection from '../components/Shared/GreySection'
@@ -100,12 +89,13 @@ import HomeEventsSection from '../components/Home/HomeEventsSection'
 import HomeFeaturedWorkSection from "../components/Home/HomeFeaturedWorkSection";
 import HomeFeaturedContentSection from "../components/Home/HomeFeaturedContentSection";
 import HomeJoinUsSection from "../components/Home/HomeJoinUsSection";
-import {parseEvents, getLatestByDate} from '../modules/utils'
+import {parseEvents} from '../modules/utils'
 
 export default {
   layout: 'home',
   components: {
     Hero,
+    GoogleMap,
     SocialIconsBar,
     WhiteSection,
     GreySection,
@@ -118,11 +108,12 @@ export default {
   },
   head: {
     title: 'Home',
-    titleTemplate: '%s | WIP',
-    script: [
-      // Google Maps JS API script needed for map
-      { src: `https://maps.googleapis.com/maps/api/js?key=${process.env.googleMapsAPiKey}` }
-    ]
+    titleTemplate: '%s | WIP'
+  },
+  data() {
+    return {
+      pageHeaderTitle: 'Home'
+    }
   },
   async asyncData({ $axios }) {
     // Title and 1 paragraph description
@@ -137,22 +128,11 @@ export default {
 
     // Meetup dates
     const meetupDatesSection = await $axios.get('https://edgeryders.eu/tags/webcontent-culturesquad-event');
-    const events = parseEvents(meetupDatesSection.data.topic_list.topics);
+    const events = parseEvents(meetupDatesSection.data.topic_list.topics, 'excerpt');
 
     // Featured work
-    //let featuredWorkForParse;
-    let featuredWorkPosts = [];
     const featuredWorkSection = await $axios.get('https://edgeryders.eu/tags/webcontent-culturesquad-featured');
     const featuredWork = featuredWorkSection.data.topic_list.topics;
-    const featuredWorkPromises = featuredWork.map( work=> $axios.get(`https://edgeryders.eu/t/${work.slug}/${work.id}`));
-    Promise.all(featuredWorkPromises).then(
-      results => {
-        results.forEach(function (result) {
-          let latest = getLatestByDate(result.data.post_stream.posts, 'created_at');
-          featuredWorkPosts.push(latest);
-        });
-      }
-    );
 
     // Featured content
     const featuredContentSection = await $axios.get('https://edgeryders.eu/tags/webcontent-culturesquad-post');
@@ -170,7 +150,6 @@ export default {
       teamSectionParagraphDescription,
       events,
       featuredWork,
-      featuredWorkPosts,
       featuredContent,
       joinUsSectionTitle,
       joinUsSectionParagraphDescription
@@ -214,15 +193,15 @@ export default {
     &__buttons {
       position: relative;
 
-      &:after {
-        display: block;
-        content: '';
-        position: absolute;
-        width: 1px;
-        background-color: $white;
-        left: 0;
-        top: -20%;
-        height: 140%;
+      @media only screen and (max-width: 990px) {
+        border-left: none;
+        border-top: 1px solid #fff;
+        margin-top: 20px;
+        padding-top: 30px;
+      }
+
+      @media only screen and (min-width: 990px) {
+        border-left: 1px solid #fff;
       }
 
       &__inner {

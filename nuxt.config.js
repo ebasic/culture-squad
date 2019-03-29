@@ -16,9 +16,9 @@ module.exports = {
   ** Plugins
   */
   plugins: [
-    { src: '@/plugins/nuxt-client-init.js', ssr: false },
-    { src: '~/plugins/axios.js', ssr: true },
-    { src: '~/plugins/maps.js', ssr: false }
+    { src: '~/plugins/nuxt-client-init.js', ssr: false },
+    { src: '~/plugins/axios.js' },
+    { src: '~/plugins/vue2-google-maps.js' }
   ],
   /*
   ** Axios configuration
@@ -78,6 +78,10 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor:[
+      'babel-polyfill'
+    ],
+    transpile: ['vue2-google-maps'],
     /*
     ** You can extend webpack config here
     */

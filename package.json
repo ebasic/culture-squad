@@ -19,12 +19,15 @@
     "@nuxtjs/markdownit": "^1.2.3",
     "bootstrap-vue": "^2.0.0-rc.15",
     "cross-env": "^5.2.0",
+    "geolib": "^2.0.24",
     "moment": "^2.24.0",
     "nuxt": "^2.5.0",
     "vue-clickout": "^1.0.0",
+    "vue2-google-maps": "^0.10.6",
     "vuex-persist": "^1.1.4"
   },
   "devDependencies": {
+    "@babel/polyfill": "^7.4.0",
     "@nuxtjs/style-resources": "^0.1.2",
     "babel-eslint": "^8.2.1",
     "bootstrap": "^4.3.1",

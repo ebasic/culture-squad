@@ -1,5 +1,7 @@
 <template>
-  <div id="__content-wrapper">
+  <div 
+    id="__content-wrapper" 
+    class="main_wrapper">
     <navigation :sticky="!heroNav"/>
     <nuxt id="__content"/>
     <website-footer/>
@@ -7,8 +9,8 @@
 </template>
 
 <script>
-  import Navigation from '@/components/Layout/Navigation'
-  import WebsiteFooter from '@/components/Layout/Footer'
+  import Navigation from '../components/Layout/Navigation'
+  import WebsiteFooter from '../components/Layout/Footer'
 
   export default {
     components: {
