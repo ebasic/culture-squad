@@ -28,4 +28,6 @@ lot of themes, easy customizable and facilitates development)
 
 There is 'secret' page on site (navigate to `/theme-kit`) 
 with theme elements preview 
+
+Added responsivity for various screens sizes
 ```
