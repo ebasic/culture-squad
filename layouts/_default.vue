@@ -1,5 +1,7 @@
 <template>
-  <div id="__content-wrapper">
+  <div 
+    id="__content-wrapper" 
+    class="main_wrapper">
     <navigation :sticky="!heroNav"/>
     <nuxt id="__content"/>
     <website-footer/>

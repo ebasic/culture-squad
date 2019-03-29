@@ -2,7 +2,7 @@
   <footer class="footer container-fluid">
     <div class="container">
       <div class="row mb-4">
-        <div class="col-sm-6 text-left">
+        <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
           <b-nav>
             <b-nav-item to="/generic">FAQ</b-nav-item>
             <b-nav-item to="/generic">Support</b-nav-item>
@@ -10,15 +10,15 @@
             <b-nav-item to="/generic">Contact</b-nav-item>
           </b-nav>
         </div>
-        <div class="col-sm-6 text-right">
+        <div class="col-sm-12 col-md-6 text-md-right">
           <social-icons-bar />
         </div>
       </div>
       <div class="row d-flex align-items-center">
-        <div class="col-sm-6 text-left">
+        <div class="col-md-6 col-sm-12 mb-sm-3">
           &copy; Untitled. All rights reserved. Lorem ipsum dolor.
         </div>
-        <div class="col-sm-6 text-right">
+        <div class="col-md-6 col-sm-12 mb-3 mb-md-0 text-md-right">
           12345 Somewhere Road Nashville, TN 00000(000) 000-0000
         </div>
       </div>

@@ -6,13 +6,13 @@
       class="hero">
       <div class="container">
         <div class="row mx-auto py-3 d-flex align-items-center hero__container">
-          <div class="col-8 text-left hero__text">
+          <div class="col-sm-12 col-lg-8 text-left hero__text">
             <div class="hero__text__inner">
               <h1> {{ pageHeaderTitle }} </h1>
               <p> Amet tincidunt arcu suspendisse consequat </p>
             </div>
           </div>
-          <div class="col-4 hero__buttons pl-5">
+          <div class="col-sm-12 col-lg-4 hero__buttons pl-lg-5">
             <div class="hero__buttons__inner">
               <b-button
                 class="w-100 mb-4"
@@ -193,15 +193,15 @@ export default {
     &__buttons {
       position: relative;
 
-      &:after {
-        display: block;
-        content: '';
-        position: absolute;
-        width: 1px;
-        background-color: $white;
-        left: 0;
-        top: -20%;
-        height: 140%;
+      @media only screen and (max-width: 990px) {
+        border-left: none;
+        border-top: 1px solid #fff;
+        margin-top: 20px;
+        padding-top: 30px;
+      }
+
+      @media only screen and (min-width: 990px) {
+        border-left: 1px solid #fff;
       }
 
       &__inner {

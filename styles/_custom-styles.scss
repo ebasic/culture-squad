@@ -19,6 +19,15 @@ div.meta {
   display: none !important;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.main_wrapper {
+  overflow: hidden !important;
+}
+
 // Default fade transition animation.
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s;
