@@ -36,9 +36,12 @@ export default {
   },
   async asyncData({ $axios }) {
     // Burning now page @ Text + photos
-    const burningNow = await $axios.get('https://edgeryders.eu/tags/webcontent-culturessquad-burning');
+    const burningNowDiscourseEndpoint = 'https://edgeryders.eu/tags/webcontent-culturessquad-burning';
+    const burningNow = await $axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${burningNowDiscourseEndpoint}`);
     const lastTopic = getLatestByDate(burningNow.data.topic_list.topics, 'created_at');
-    const burningNowContent = await $axios.get(`https://edgeryders.eu/t/${lastTopic.slug}/${lastTopic.id}`);
+
+    const burningNowContentDiscourseEndpoint = `https://edgeryders.eu/t/${lastTopic.slug}/${lastTopic.id}`;
+    const burningNowContent = await $axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${burningNowContentDiscourseEndpoint}`);
     const burningNowPost = getLatestByDate(burningNowContent.data.post_stream.posts, 'updated_at');
     const burningNowHtml = burningNowPost.cooked;
 

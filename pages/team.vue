@@ -57,16 +57,19 @@
     },
     async asyncData({ $axios }) {
       // Text about team
-      const aboutTeamSection = await $axios.get('https://edgeryders.eu/t/team-site-description/9603');
+      const aboutTeamSectionDiscourseEndpoint = 'https://edgeryders.eu/t/team-site-description/9603';
+      const aboutTeamSection = await $axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${aboutTeamSectionDiscourseEndpoint}`);
       const aboutTeamSectionTitle = aboutTeamSection.data.title;
       const aboutTeamSectionDescription = aboutTeamSection.data.post_stream.posts[0].cooked;
 
       // Teams bios and pictures from edgeryders.eu
-      const teamBiosPicturesSection = await $axios.get('https://edgeryders.eu/tags/webcontent-culturesquad-member');
+      const teamBiosPicturesSectionDiscourseEndpoint = 'https://edgeryders.eu/tags/webcontent-culturesquad-member';
+      const teamBiosPicturesSection = await $axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${teamBiosPicturesSectionDiscourseEndpoint}`);
       const members = teamBiosPicturesSection.data.topic_list.topics;
 
       // Logos of Edgeryders and partners
-      const logosPartnersSection = await $axios.get('https://edgeryders.eu/t/team-site-partners/9604');
+      const logosPartnersSectionDiscourseEndpoint = 'https://edgeryders.eu/t/team-site-partners/9604';
+      const logosPartnersSection = await $axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${logosPartnersSectionDiscourseEndpoint}`);
       const logosPartnersSectionTitle = logosPartnersSection.data.title;
       const logosPartnersSectionContent = logosPartnersSection.data.post_stream.posts[0].cooked;
 
