@@ -1,19 +1,27 @@
-# Website for Cultures Squad
+# Culture Squad
 
-## Build Setup
+Website for the Edgeryders "Culture Squad", built in Vue.js / Nuxt.js, displaying content retrieved from the edgeryders.eu Discourse platform
 
-``` bash
-# install dependencies (execute command in project root)
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development purposes
+
+### Installing
+
+A step by step series of examples that tell you how to get a development env running
+
+```
+# install dependencies - execute the command in project root:
 $ yarn install
 
-# install dependencies for culture-squad cache api (navigate to culture-squad-cache-api folder and execute command)
+# install dependencies for culture-squad cache api - navigate to culture-squad-cache-api folder and execute the command:
 $ yarn install
 
-# while in culture-squad-cache-api folder, execute command
+# while in culture-squad-cache-api folder, execute the command to run cache middleware application:
 $ npm run dev
 
-# Then navigate back to project root
-# serve website with hot reload at localhost:3000
+# then navigate back to project root
+# serve website with hot reload at localhost:3000 (development)
 $ yarn dev
 
 # build for production and launch server
@@ -24,19 +32,22 @@ $ yarn start
 $ yarn generate:staging
 $ yarn generate:production
 ```
+`
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+## Built With
 
-#
+* [Nuxt.js docs](https://nuxtjs.org) - The web framework used for website
+* [Express.js docs](https://expressjs.com/) - The NodeJS framework used to set up cache middleware app
 
-```
-NOTES:
 
-- preferred template completely rewritten in Bootstrap 4 and adjusted to Vue environment
+## License
 
-- chosen Bootstrap 4 (facilitates development, very well documented for Vue components, many available themes etc.)
+This project is licensed under the MIT License 
 
-- added responsivity for different screens sizes
+## NOTES
 
-- website not directly connected to Edgeryders Discourse API but to cache middleware mini application written in NodeJS/Express (cache duration set to 120sec at the moment)
-```
+* Template used is [Prototype](https://pixelarity.com/prototype) but refactored and adjusted with Bootstrap 4 (in Vue.js environment)
+* Navigate to hidden page ``/theme-kit`` where you can see the overview of Bootstrap elements used 
+* In styles folder at the project root, just replace the ``theme`` folder with another one to apply new theme
+* Website isn't directly connected to Edgeryders Discourse API but to cache middleware API (mini NodeJS/Express application that retrieves data from Discourse API and caches it)
+* Cache middleware application code is located at website's project root in ``culture-squad-cache-api`` folder (just at the moment, it will be moved to separate repository later)
