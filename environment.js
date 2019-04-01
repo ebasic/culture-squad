@@ -20,10 +20,12 @@ const config = {
     ...defaultConfig
   },
   staging: {
-    ...defaultConfig
+    ...defaultConfig,
+    cacheMiddlewareBaseEndpoint: 'https://cs-api-dev.mop.ba'
   },
   production: {
-    ...defaultConfig
+    ...defaultConfig,
+    cacheMiddlewareBaseEndpoint: 'https://cs-api-dev.mop.ba'
   }
 };
 
