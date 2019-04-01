@@ -1,6 +1,8 @@
 # Created by https://www.gitignore.io/api/node,macos
 # Edit at https://www.gitignore.io/?templates=node,macos
 
+.idea
+
 ## build folder
 dist
 build
@@ -16,9 +18,6 @@ Icon
 
 # Thumbnails
 ._*
-
-.idea
-logs/
 
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100

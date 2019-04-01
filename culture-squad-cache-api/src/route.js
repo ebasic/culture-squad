@@ -6,7 +6,6 @@ let router = express.Router();
 
 router.get('/get-data', checkCache(), (req, res) => {
   if(!req.query.endpoint || (req.query.endpoint && typeof req.query.endpoint !== 'string')) {
-    console.log('INVALID REQUEST');
     res.status(400).send({
       message: 'Invalid request'
     });

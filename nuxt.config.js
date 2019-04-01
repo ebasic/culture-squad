@@ -17,9 +17,6 @@ module.exports = {
   */
   plugins: [
     { src: '~/plugins/nuxt-client-init.js', ssr: false },
-/*
-    { src: '~/plugins/axios.js' },
-*/
     { src: '~/plugins/vue2-google-maps.js' }
   ],
   /*
