@@ -42,7 +42,7 @@ $ yarn generate:production
 
 ## License
 
-This project is licensed under the MIT License 
+This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/) 
 
 ## NOTES
 
@@ -51,3 +51,6 @@ This project is licensed under the MIT License
 * In styles folder at the project root, just replace the ``theme`` folder with another one to apply new theme
 * Website isn't directly connected to Edgeryders Discourse API but to cache middleware API (mini NodeJS/Express application that retrieves data from Discourse API and caches it)
 * Cache middleware application code is located at website's project root in ``culture-squad-cache-api`` folder (just at the moment, it will be moved to separate repository later)
+* Deployed on Netlify at the moment (currently doesn't work because HTTP is not set on API)
+
+  [![Netlify Status](https://api.netlify.com/api/v1/badges/7acfae5b-412d-4ab6-ba31-2dca8be8762e/deploy-status)](https://app.netlify.com/sites/culturesquad-dev-test/deploys)
