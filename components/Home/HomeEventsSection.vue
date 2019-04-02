@@ -23,7 +23,7 @@
               <div><small><strong>Time:</strong> {{ event.time }}</small></div>
               <div><small v-html="event.location"/></div>
               <p class="card-text mt-3"> {{ truncate(event.content, 100, '...') }}</p>
-              <a :href="`/event?slug=${event.slug}&eventId=${event.id}`"><small>Event details...</small></a>
+              <a :href="`/event/${event.slug}/${event.id}`"><small>Event details...</small></a>
             </div>
           </div>
         </div>
