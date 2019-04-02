@@ -14,9 +14,8 @@ export default  () => {
 };
 
 export const saveToCache = (key, data, duration) => {
-  if (duration === undefined) {
-    duration = process.env.CACHE_DURATION;
-  }
+  if (!duration)
+    duration = process.env.CACHE_DURATION ? process.env.CACHE_DURATION : 120;
 
   duration = typeof duration === 'string' ? Number(duration) : duration;
   memoryCache.put(key, data, duration * 1000);
