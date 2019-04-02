@@ -51,9 +51,6 @@ export default {
       }
     }
     catch (err) {
-      console.log('err response: ', err.response);
-      console.log('err response data: ', err.response.data);
-
       context.error(parseError(err));
     }
   }

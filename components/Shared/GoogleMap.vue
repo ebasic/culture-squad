@@ -65,7 +65,7 @@
         let final = [];
         markersArray.forEach(function (m) {
           final.push(m.position)
-        })
+        });
 
         return final;
       },

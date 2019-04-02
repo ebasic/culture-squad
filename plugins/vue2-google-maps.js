@@ -6,4 +6,4 @@ Vue.use(VueGoogleMaps, {
     key: process.env.googleMapsAPiKey,
     libraries: 'places'
   },
-})
+});
