@@ -11,7 +11,7 @@
           class="col-lg-4 col-sm-12 mb-3 mr-3 ml-3 p-0">
           <div class="card bg-light m-1">
             <div class="card-header">
-              <a :href="`/event?slug=${event.slug}&eventId=${event.id}`">
+              <a :href="`/event/${event.slug}/${event.id}`">
                 <h5>{{ event.title }}</h5>
               </a>
             </div>

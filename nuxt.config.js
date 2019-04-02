@@ -46,7 +46,7 @@ export default {
   css: [
     '@/styles/main.scss'
   ],
-  /* Generate configuration */
+  /* Configuration for generating routes with dynamic params */
   generate: {
     routes: () => {
       const meetupDatesSectionDiscourseEndpoint = 'https://edgeryders.eu/tags/webcontent-culturesquad-event';
@@ -54,8 +54,7 @@ export default {
         .then((res) => {
           let events = res.data.topic_list.topics;
           return events.map((event) => {
-            console.log("GENERATED");
-            return `/event?slug=${event.slug}&eventId=${event.id}`
+            return `/event/${event.slug}/${event.id}`
           })
         })
     }

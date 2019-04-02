@@ -13,9 +13,9 @@
 </template>
 
 <script>
-  import Hero from '../../components/Layout/Hero'
-  import WhiteSection from '../../components/Shared/WhiteSection'
-  import EventDetails from '../../components/Event/EventDetails'
+  import Hero from '../../../../components/Layout/Hero'
+  import WhiteSection from '../../../../components/Shared/WhiteSection'
+  import EventDetails from '../../../../components/Event/EventDetails'
 
   export default {
     layout: 'default',
@@ -34,10 +34,11 @@
       titleTemplate: '%s | WIP'
     },
     async asyncData(context) {
-      if(context.query.slug && context.query.eventId){
-        const eventDetailsDiscourseEndpoint = `https://edgeryders.eu/t/${context.query.slug}/${context.query.eventId}`;
+      if(context.params.slug && context.params.id){
+        const eventDetailsDiscourseEndpoint = `https://edgeryders.eu/t/${context.params.slug}/${context.params.id}`;
         const eventDetails = await context.$axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${eventDetailsDiscourseEndpoint}`);
         const event = eventDetails.data.post_stream.posts[0];
+
         return {
           event
         }
