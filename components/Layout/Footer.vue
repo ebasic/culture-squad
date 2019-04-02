@@ -4,10 +4,10 @@
       <div class="row mb-4">
         <div class="col-sm-12 col-md-6 mb-3 mb-md-0">
           <b-nav>
-            <b-nav-item to="/generic">FAQ</b-nav-item>
-            <b-nav-item to="/generic">Support</b-nav-item>
-            <b-nav-item to="/generic">Terms</b-nav-item>
-            <b-nav-item to="/generic">Contact</b-nav-item>
+            <b-nav-item to="/#">FAQ</b-nav-item>
+            <b-nav-item to="/#">Support</b-nav-item>
+            <b-nav-item to="/#">Terms</b-nav-item>
+            <b-nav-item to="/#">Contact</b-nav-item>
           </b-nav>
         </div>
         <div class="col-sm-12 col-md-6 text-md-right">
