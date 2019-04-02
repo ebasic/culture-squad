@@ -16,7 +16,7 @@
 import Hero from '../components/Layout/Hero'
 import WhiteSection from '../components/Shared/WhiteSection'
 import BurningNowContent from '../components/BurningNow/BurningNowContent'
-import {getLatestByDate} from '../modules/utils'
+import {getLatestByDate, parseError} from '../modules/utils'
 
 export default {
   layout: 'default',
@@ -34,19 +34,27 @@ export default {
       pageHeaderTitle: 'Burning now'
     }
   },
-  async asyncData({ $axios }) {
-    // Burning now page @ Text + photos
-    const burningNowDiscourseEndpoint = 'https://edgeryders.eu/tags/webcontent-culturessquad-burning';
-    const burningNow = await $axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${burningNowDiscourseEndpoint}`);
-    const lastTopic = getLatestByDate(burningNow.data.topic_list.topics, 'created_at');
+  async asyncData(context) {
+    try {
+      // Burning now page @ Text + photos
+      const burningNowDiscourseEndpoint = 'https://edgeryders.eu/tags/webcontent-culturessquad-burning';
+      const burningNow = await context.$axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${burningNowDiscourseEndpoint}`);
+      const lastTopic = getLatestByDate(burningNow.data.topic_list.topics, 'created_at');
 
-    const burningNowContentDiscourseEndpoint = `https://edgeryders.eu/t/${lastTopic.slug}/${lastTopic.id}`;
-    const burningNowContent = await $axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${burningNowContentDiscourseEndpoint}`);
-    const burningNowPost = getLatestByDate(burningNowContent.data.post_stream.posts, 'updated_at');
-    const burningNowHtml = burningNowPost.cooked;
+      const burningNowContentDiscourseEndpoint = `https://edgeryders.eu/t/${lastTopic.slug}/${lastTopic.id}`;
+      const burningNowContent = await context.$axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${burningNowContentDiscourseEndpoint}`);
+      const burningNowPost = getLatestByDate(burningNowContent.data.post_stream.posts, 'updated_at');
+      const burningNowHtml = burningNowPost.cooked;
 
-    return {
-      burningNowHtml
+      return {
+        burningNowHtml
+      }
+    }
+    catch (err) {
+      console.log('err response: ', err.response);
+      console.log('err response data: ', err.response.data);
+
+      context.error(parseError(err));
     }
   }
 }

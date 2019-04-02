@@ -102,3 +102,41 @@ export const getLatestByDate = (array, dateKey) => {
 export const formatDate = (date, formatString) => {
   return moment(date).format(formatString);
 };
+
+
+// Parse error object
+export const parseError = (err) => {
+  // Return error if it's not a response error.
+  if (!err.response) {
+    // Catch common non-response errors.
+    if (!err.status && err.message === 'Network Error') {
+      return { statusCode: 500, message: 'There was a problem with the internet connection.' };
+    }
+
+    return { statusCode: err.status, message: err.message };
+  }
+
+  // Parse response error
+  if (err.response) {
+    let status = err.response.data && err.response.data.status ? err.response.data.status : err.status;
+    let statusText = err.response.data && err.response.data.statusText ? err.response.data.statusText : err.statusText;
+    let message = null;
+
+    if (err.response.data && err.response.data.data){
+      switch(typeof err.response.data.data) {
+        case 'string':
+          message = err.response.data.data;
+          break;
+        case 'object':
+          message = err.response.data.data.errors ? err.response.data.data.errors : null;
+          break;
+        default:
+        message = statusText;
+      }
+    } else {
+      message = statusText;
+    }
+
+    return { statusCode: status, message: message };
+  }
+};

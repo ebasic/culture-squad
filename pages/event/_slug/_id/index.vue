@@ -13,9 +13,10 @@
 </template>
 
 <script>
-  import Hero from '../../../../components/Layout/Hero'
-  import WhiteSection from '../../../../components/Shared/WhiteSection'
-  import EventDetails from '../../../../components/Event/EventDetails'
+  import Hero from '../../../../components/Layout/Hero';
+  import WhiteSection from '../../../../components/Shared/WhiteSection';
+  import EventDetails from '../../../../components/Event/EventDetails';
+  import {parseError} from '../../../../modules/utils';
 
   export default {
     layout: 'default',
@@ -35,12 +36,17 @@
     },
     async asyncData(context) {
       if(context.params.slug && context.params.id){
-        const eventDetailsDiscourseEndpoint = `https://edgeryders.eu/t/${context.params.slug}/${context.params.id}`;
-        const eventDetails = await context.$axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${eventDetailsDiscourseEndpoint}`);
-        const event = eventDetails.data.post_stream.posts[0];
+        try {
+          const eventDetailsDiscourseEndpoint = `https://edgeryders.eu/t/${context.params.slug}/${context.params.id}`;
+          const eventDetails = await context.$axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${eventDetailsDiscourseEndpoint}`);
+          const event = eventDetails.data.post_stream.posts[0];
 
-        return {
-          event
+          return {
+            event
+          }
+        }
+        catch (err) {
+          context.error(parseError(err));
         }
       }
     }
