@@ -1,5 +1,5 @@
 import axios from 'axios';
-import circularJSON from 'circular-json';
+import {stringify} from 'flatted';
 import express from 'express';
 import checkCache, {saveToCache} from './cache';
 
@@ -14,14 +14,14 @@ router.get('/get-data', checkCache(), (req, res) => {
 
   axios.defaults.headers.common['Accept'] = 'application/json';
 
-  axios.get(req.query.endpoint, {params: {api_key: process.env.DISCOURSE_API_KEY }})
+  axios.get(req.query.endpoint, {params: {api_key: process.env.DISCOURSE_API_KEY}})
     .then(response => {
       let key = 'culturesquad__' + req.originalUrl || req.url;
       saveToCache(key, response.data);
       res.status(200).send(response.data);
     })
     .catch(error => {
-      res.status(400).send(circularJSON.stringify(error.response));
+      res.status(400).send(stringify(error.response));
     });
 });
 
