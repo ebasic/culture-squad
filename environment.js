@@ -28,4 +28,4 @@ const config = {
   }
 };
 
-module.exports = config[process.env.RELEASE_STAGE];
+module.exports = config[process.env.NODE_ENV];

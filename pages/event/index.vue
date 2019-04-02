@@ -34,10 +34,13 @@
       titleTemplate: '%s | WIP'
     },
     async asyncData(context) {
-      const eventDetails = await context.$axios.get(`https://edgeryders.eu/t/${context.query.slug}/${context.query.eventId}`);
-      const event = eventDetails.data.post_stream.posts[0];
-      return {
-        event
+      if(context.query.slug && context.query.eventId){
+        const eventDetailsDiscourseEndpoint = `https://edgeryders.eu/t/${context.query.slug}/${context.query.eventId}`;
+        const eventDetails = await context.$axios.get(`${process.env.cacheMiddlewareBaseEndpoint}/get-data?endpoint=${eventDetailsDiscourseEndpoint}`);
+        const event = eventDetails.data.post_stream.posts[0];
+        return {
+          event
+        }
       }
     }
   }
