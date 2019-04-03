@@ -50,7 +50,17 @@ This project is licensed under the [MIT License](https://choosealicense.com/lice
 * Navigate to hidden page ``/theme-kit`` where you can see the overview of Bootstrap elements used 
 * In styles folder at the project root, just replace the ``theme`` folder with another one to apply new theme
 * Website isn't directly connected to Edgeryders Discourse API but to cache middleware API (mini NodeJS/Express application that retrieves data from Discourse API and caches it)
-* Cache middleware application code is located at website's project root in ``culture-squad-cache-api`` folder (just at the moment, it will be moved to separate repository later)
-* Deployed on Netlify at the moment (currently doesn't work because HTTP is not set on API)
+* Cache middleware application code is located at website's project root in ``culture-squad-cache-api`` folder at the moment, but it can be moved to dedicated repository 
+* Cache middleware app is available on https://cs-api-dev.mop.ba
+* It exposes only one GET endpoint and is used as `https://cs-api-dev.mop.ba/get-data?endpoint={edgerydersDiscourseEndpoint}`
+* Example (to get data for Burning now page): 
 
-  [![Netlify Status](https://api.netlify.com/api/v1/badges/7acfae5b-412d-4ab6-ba31-2dca8be8762e/deploy-status)](https://app.netlify.com/sites/culturesquad-dev-test/deploys)
+  `https://cs-api-dev.mop.ba/get-data?endpoint=
+  https://edgeryders.eu/tags/webcontent-culturessquad-burning`
+
+* Cache middleware app appends Discourse `api_key` query param and adds `Accept application/json` header internaly (so you don't need to add `.json` extension to `edgerydersDiscourseEndpoint` string)
+
+* By default, Discourse API returns `HTML` if you call endpoint without `.json` extension
+---
+#### Website is available at: https://cs-dev.mop.ba
+
