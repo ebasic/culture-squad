@@ -1,4 +1,4 @@
-import Vuex from 'vuex'
+import Vuex from 'vuex';
 // import VuexPersistence from 'vuex-persist'
 
 // const vuexLocalStorage = new VuexPersistence({
@@ -12,21 +12,21 @@ import Vuex from 'vuex'
 
 const state = {
 
-}
+};
 
 const getters = {
 
-}
+};
 
 const mutations = {
 
-}
+};
 
 const actions = {
   nuxtClientInit(context, app) {
 
   }
-}
+};
 
 const store = () => {
   return new Vuex.Store({
@@ -41,6 +41,6 @@ const store = () => {
     //   auth
     // }
   })
-}
+};
 
 export default store

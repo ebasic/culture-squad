@@ -1,5 +1,5 @@
 export default (ctx) => {
-  const { app } = ctx
+  const { app } = ctx;
 
-  return ctx.store.dispatch('nuxtClientInit', app)
+  return ctx.store.dispatch('nuxtClientInit', app);
 }

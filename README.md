@@ -32,7 +32,6 @@ $ yarn start
 $ yarn generate:staging
 $ yarn generate:production
 ```
-`
 
 ## Built With
 
@@ -58,9 +57,8 @@ This project is licensed under the [MIT License](https://choosealicense.com/lice
   `https://cs-api-dev.mop.ba/get-data?endpoint=
   https://edgeryders.eu/tags/webcontent-culturessquad-burning`
 
-* Cache middleware app appends Discourse `api_key` query param and adds `Accept application/json` header internaly (so you don't need to add `.json` extension to `edgerydersDiscourseEndpoint` string)
+* Cache middleware app appends Discourse `api_key` query param (for authentication) and adds `Accept application/json` header (to return data in `JSON` format) internally, so you don't need to add `.json` extension to `edgerydersDiscourseEndpoint` string
 
 * By default, Discourse API returns `HTML` if you call endpoint without `.json` extension
 ---
-#### Website is available at: https://cs-dev.mop.ba
-
+### Website is available at: https://cs-dev.mop.ba
